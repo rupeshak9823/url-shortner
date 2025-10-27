@@ -38,8 +38,15 @@ func (h URLHandler) Shorten() http.HandlerFunc {
 			w.Write([]byte(httpError.Message))
 			return
 		}
-		w.WriteHeader(http.StatusOK)
-		w.Write([]byte(urlMapping.ShortCode))
+		output, err := json.Marshal(map[string]interface{}{
+			"data": urlMapping,
+		})
+		if err != nil {
+			util.ReturnHttpError(err, w)
+			return
+		}
+		w.Header().Set("Content-Type", "application/json")
+		w.Write([]byte(output))
 	}
 }
 
