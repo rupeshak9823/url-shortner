@@ -74,6 +74,9 @@ docker-compose up --build
   ```
 ### 2. Redirect
 - GET /url/:shortCode
+  ```
+    curl --location --request GET 'localhost:8080/url/WbGbHefo'
+  ```
 - Response
   ```
     307 Temporary Redirect → redirects to original URL.
@@ -81,6 +84,9 @@ docker-compose up --build
 
 ### 3. Admin List URLs
 - GET /admin/urls?page=1&perPage=2
+  ```
+    curl --location 'localhost:8080/admin/urls?page=1&perPage=2'
+  ```
 - Response
   ```
     {
